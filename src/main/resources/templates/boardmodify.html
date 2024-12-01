@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시물 수정</title>
+  <style>
+    .layout {
+      width: 500px;
+      margin: 0 auto;
+      margin-top: 40px;
+    }
+
+    .layout input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .layout textarea {
+      width: 100%;
+      margin-top: 10px;
+      min-height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="layout">
+  <h1>게시물 수정 페이지</h1>
+
+  <form th:action="@{/board/update/{id}(id=${board.id})}" method="post" onsubmit="return showConfirmation()">
+    <input name="title" type="text" th:value="${board.title}" placeholder="제목을 입력하세요">
+    <textarea name="content" th:text="${board.content}" placeholder="내용을 입력하세요"></textarea>
+    <button type="submit">수정</button>
+  </form>
+</div>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  function showConfirmation() {
+    var message = '[[${message}]]';
+    if (message) {
+      alert(message); // 메시지 알림 표시
+    }
+    return true; // 폼 제출을 계속 진행
+  }
+  /*]]>*/
+</script>
+
+</body>
+</html>
