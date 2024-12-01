@@ -49,9 +49,10 @@ public class BoardService {
     }
     // 특정 게시글 삭제
     public void boardDelete(Integer id) {
-        boardRepository.deleteById(id);
-        reorderBoardNumbers();
+        boardRepository.deleteById(id); // 데이터베이스에서 ID로 해당 게시글 삭제
+        reorderBoardNumbers(); // 삭제 후 boardNumber 재정렬
     }
+
     private void reorderBoardNumbers() {
         // ID 순으로 정렬하여 모든 게시글 가져오기
         List<board> boards = boardRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
@@ -62,5 +63,6 @@ public class BoardService {
             boardRepository.save(boards.get(i)); // 변경 사항 저장
         }
     }
+
 
 }

@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BoardRepository extends JpaRepository<board, Integer> {
-    Page<board> findByTitleContaining(String searchKeyword, Pageable pageable);
+    // 검색을 위한 메서드 선언
+    Page<board> findByTitleContaining(String keyword, Pageable pageable);
 }

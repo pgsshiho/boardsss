@@ -66,10 +66,10 @@ public class BoardController {
     }
     @GetMapping("/board/delete")
     public String boardDelete(@RequestParam("id") Integer id, Model model) {
-        boardService.boardDelete(id);
+        boardService.boardDelete(id); // 서비스 계층에서 삭제 처리
         model.addAttribute("message", "글이 삭제되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
-        return "redirect:/board/list?page=0";
+        return "redirect:/board/list?page=0"; // 삭제 후 리스트 첫 페이지로 이동
     }
     @GetMapping("/board/modify/{id}")
     public String boardModify(@PathVariable("id") Integer id, Model model) {
